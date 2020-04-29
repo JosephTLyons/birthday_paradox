@@ -33,7 +33,7 @@ fn get_birthday_string(birthday_number: u32) -> String {
     month + ", " + &day
 }
 
-fn a_pair_exists(birthday_vec: &[u32]) -> Option<(usize, usize, u32)> {
+fn pair_exists(birthday_vec: &[u32]) -> Option<(usize, usize, u32)> {
     for i in 0..birthday_vec.len() {
         for j in i + 1..birthday_vec.len() {
             if birthday_vec[i] == birthday_vec[j] {
@@ -60,7 +60,7 @@ fn run_birthday_paradox(number_of_birthdays: u32, runs: u32) {
         make_birthdays(&mut birthday_vec, number_of_birthdays);
         print_birtdays(&birthday_vec);
 
-        match a_pair_exists(&birthday_vec) {
+        match pair_exists(&birthday_vec) {
             Some(data) => {
                 println!(
                     "There are two birthdays, {} and {}, on: {}",
