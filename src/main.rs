@@ -7,30 +7,29 @@ fn make_birthdays(birthday_vec: &mut Vec<u32>, amount_of_birthdays: u32) {
     }
 }
 
-fn month_number_to_month(month_number: u32) -> Option<String> {
+fn month_number_to_month(month_number: u32) -> &'static str {
     match month_number {
-        1 => Some(String::from("January")),
-        2 => Some(String::from("February")),
-        3 => Some(String::from("March")),
-        4 => Some(String::from("April")),
-        5 => Some(String::from("May")),
-        6 => Some(String::from("June")),
-        7 => Some(String::from("July")),
-        8 => Some(String::from("August")),
-        9 => Some(String::from("September")),
-        10 => Some(String::from("October")),
-        11 => Some(String::from("November")),
-        12 => Some(String::from("December")),
-        _ => None,
+        1 => "January",
+        2 => "February",
+        3 => "March",
+        4 => "April",
+        5 => "May",
+        6 => "June",
+        7 => "July",
+        8 => "August",
+        9 => "September",
+        10 => "October",
+        11 => "November",
+        _ => "December",
     }
 }
 
 fn get_birthday_string(birthday_number: u32) -> String {
     let date = NaiveDate::from_yo(0, birthday_number);
-    let month = month_number_to_month(date.month()).expect("Didn't provide a proper month number.");
+    let month = month_number_to_month(date.month());
     let day = date.day().to_string();
 
-    month + ", " + &day
+    format!("{}, {}", month, &day)
 }
 
 fn pair_exists(birthday_vec: &[u32]) -> Option<(usize, usize, u32)> {
